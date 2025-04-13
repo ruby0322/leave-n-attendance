@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('homepage has title and links to the reports page', async ({ page }) => {
   // Navigate to the homepage
-  await page.goto('http://localhost:3000');
+    await page.goto('http://localhost:3000', { waitUntil: 'domcontentloaded' });
 
   // Check the title
   await expect(page).toHaveTitle(/Leave and Attendance System/);
