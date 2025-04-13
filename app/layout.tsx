@@ -1,6 +1,7 @@
+import { AppSidebar } from "@/components/app-sidebar"
 import { Navbar } from "@/components/navbar"
-import { Sidebar } from "@/components/sidebar"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { Inter } from "next/font/google"
 import type React from "react"
 import { Toaster } from "sonner"
@@ -24,10 +25,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <div className="flex h-screen">
-            <Sidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
-              <Navbar />
-              <main className="flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
+              <SidebarProvider>
+                <AppSidebar />
+                <main className="flex-1 overflow-y-auto p-4 md:p-6">
+                  <Navbar />
+                  {children}
+                </main>
+              </SidebarProvider>
             </div>
           </div>
           <Toaster />
@@ -39,3 +44,4 @@ export default function RootLayout({
 
 
 import './globals.css'
+
