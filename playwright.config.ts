@@ -6,6 +6,6 @@ export default defineConfig({
   retries: 1,
   use: {
     baseURL: 'http://localhost:3000',
-    headless: false,
+    headless: true,
   },
 });
