@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Leave and Attendance Management System
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It provides a platform for managing leave requests, attendance tracking, and team monitoring.
+
+## Features
+
+- **Leave Requests**: Submit and manage leave requests with an intuitive interface.
+- **Attendance Tracking**: Monitor attendance records for team members.
+- **Team Monitoring**: View team performance and activity summaries.
+- **Notifications**: Stay updated with real-time notifications.
+- **Reports**: Generate detailed reports for analysis.
 
 ## Getting Started
 
@@ -16,9 +26,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying files in the `app/` directory. The application supports hot-reloading, so changes will reflect immediately.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Form Validation**: [React Hook Form](https://react-hook-form) with [Zod](https://zod.dev)
+- **Icons**: [Lucide React](https://lucide.dev)
+- **Date Handling**: [date-fns](https://date-fns.org)
+
+## Folder Structure
+
+- `app/`: Contains the main application pages and layouts.
+- `components/`: Reusable UI components like tables, sidebars, and buttons.
+- `hooks/`: Custom React hooks for managing state and logic.
+- `lib/`: Utility functions and shared logic.
 
 ## Learn More
 
@@ -34,3 +57,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
