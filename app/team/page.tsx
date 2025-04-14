@@ -1,6 +1,8 @@
-import { TeamMemberCard } from "@/components/team-member-card"
+import { TeamMember, TeamMemberCard } from "@/components/team-member-card"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+
 
 // Sample team data
 const teamMembers = [
@@ -134,7 +136,7 @@ export default function TeamPage() {
               {teamMembers
                 .filter((member) => dept === "All" || member.department === dept)
                 .map((member) => (
-                  <TeamMemberCard key={member.id} member={member} />
+                  <TeamMemberCard key={member.id} member={member as TeamMember} />
                 ))}
             </div>
           </TabsContent>

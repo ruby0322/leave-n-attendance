@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { Mail } from "lucide-react"
 
-interface TeamMember {
+export interface TeamMember {
   id: string
   name: string
   position: string
