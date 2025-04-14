@@ -17,8 +17,22 @@ import { Check, Eye, MoreHorizontal, X } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 
-// Sample data for leave requests
-const myRequests = [
+// 定義 LeaveRequest 型別
+interface LeaveRequest {
+  id: string
+  type: string
+  startDate: string
+  endDate: string
+  reason: string
+  status: "Approved" | "Rejected" | "Pending"
+  proxyPerson: string
+  approver?: string
+  employee?: string
+  rejectReason?: string
+}
+
+// 定義資料
+const myRequests: LeaveRequest[] = [
   {
     id: "REQ-001",
     type: "Annual Leave",
@@ -61,7 +75,7 @@ const myRequests = [
   },
 ]
 
-const pendingApproval = [
+const pendingApproval: LeaveRequest[] = [
   {
     id: "REQ-005",
     employee: "John Doe",
@@ -84,7 +98,7 @@ const pendingApproval = [
   },
 ]
 
-const teamRequests = [
+const teamRequests: LeaveRequest[] = [
   ...myRequests,
   {
     id: "REQ-007",
@@ -111,56 +125,54 @@ const teamRequests = [
   },
 ]
 
+// 定義 Props 型別
 interface LeaveRequestsTableProps {
   type: "my-requests" | "pending-approval" | "team-requests"
 }
 
 export function LeaveRequestsTable({ type }: LeaveRequestsTableProps) {
-  const [selectedRequest, setSelectedRequest] = useState<any | null>(null)
+  const [selectedRequest, setSelectedRequest] = useState<LeaveRequest | null>(null)
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
   const [isApproveDialogOpen, setIsApproveDialogOpen] = useState(false)
   const [isRejectDialogOpen, setIsRejectDialogOpen] = useState(false)
   const [rejectReason, setRejectReason] = useState("")
 
-  const data = type === "my-requests" ? myRequests : type === "pending-approval" ? pendingApproval : teamRequests
+  const data: LeaveRequest[] =
+    type === "my-requests" ? myRequests : type === "pending-approval" ? pendingApproval : teamRequests
 
-  const handleView = (request: any) => {
+  const handleView = (request: LeaveRequest) => {
     setSelectedRequest(request)
     setIsViewDialogOpen(true)
   }
 
-  const handleApprove = (request: any) => {
+  const handleApprove = (request: LeaveRequest) => {
     setSelectedRequest(request)
     setIsApproveDialogOpen(true)
   }
 
-  const handleReject = (request: any) => {
+  const handleReject = (request: LeaveRequest) => {
     setSelectedRequest(request)
     setIsRejectDialogOpen(true)
   }
 
   const confirmApprove = () => {
-    // In a real application, you would call your API to approve the request
-    toast({
-      title: "Request approved",
+    if (!selectedRequest) return
+    toast("Request approved", {
       description: `Leave request ${selectedRequest.id} has been approved.`,
     })
     setIsApproveDialogOpen(false)
   }
 
   const confirmReject = () => {
-    // In a real application, you would call your API to reject the request
+    if (!selectedRequest) return
     if (!rejectReason) {
-      toast({
-        title: "Rejection reason required",
+      toast("Rejection reason required", {
         description: "Please provide a reason for rejecting this request.",
-        variant: "destructive",
       })
       return
     }
 
-    toast({
-      title: "Request rejected",
+    toast("Request rejected", {
       description: `Leave request ${selectedRequest.id} has been rejected.`,
     })
     setIsRejectDialogOpen(false)
@@ -197,7 +209,7 @@ export function LeaveRequestsTable({ type }: LeaveRequestsTableProps) {
                 <Badge
                   variant={
                     request.status === "Approved"
-                      ? "success"
+                      ? "default"
                       : request.status === "Rejected"
                         ? "destructive"
                         : "outline"
@@ -280,7 +292,7 @@ export function LeaveRequestsTable({ type }: LeaveRequestsTableProps) {
                   <Badge
                     variant={
                       selectedRequest.status === "Approved"
-                        ? "success"
+                        ? "default"
                         : selectedRequest.status === "Rejected"
                           ? "destructive"
                           : "outline"

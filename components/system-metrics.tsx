@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react"
+import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 // Sample data for system metrics
 const cpuData = [
@@ -208,7 +208,7 @@ export function SystemMetrics() {
                       domain={[0, 0.2]}
                       tickFormatter={(value) => `${value * 100}`}
                     />
-                    <Tooltip formatter={(value) => [`${value * 100}%`, "Error Rate"]} />
+                    <Tooltip formatter={(value: number) => [`${value * 100}%`, "Error Rate"]} />
                     <Line type="monotone" dataKey="value" stroke="#ff0000" strokeWidth={2} />
                   </LineChart>
                 </ResponsiveContainer>

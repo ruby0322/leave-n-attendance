@@ -59,7 +59,7 @@ export function RecentLeaveRequests() {
             <TableCell>
               <Badge
                 variant={
-                  request.status === "Approved" ? "success" : request.status === "Rejected" ? "destructive" : "outline"
+                  request.status === "Approved" ? "default" : request.status === "Rejected" ? "destructive" : "outline"
                 }
               >
                 {request.status}
