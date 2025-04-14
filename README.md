@@ -3,7 +3,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It provides a platform for managing leave requests, attendance tracking, and team monitoring.
 
 
-![Project Cover](cover.png)
+![Project Cover](./cover.png)
 
 
 [![Playwright Tests](https://github.com/ruby0322/tincan-habit-tracker/actions/workflows/playwright.yml/badge.svg)](https://github.com/ruby0322/tincan-habit-tracker/actions/workflows/playwright.yml)
