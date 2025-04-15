@@ -11,12 +11,14 @@ describe("Navbar Component", () => {
   };
 
   // 測試案例 1: 驗證通知數量的顯示
-  test("displays the correct number of unread notifications", () => {
+  test("displays the correct number of unread notifications", async () => {
     renderWithProviders(<Navbar />);
-
+    
     // 查找通知數量徽章
-    const badgeElement = screen.getByTestId("notification-badge"); // 使用 data-testid
-    expect(badgeElement).toHaveTextContent("2"); // 預設有 2 個未讀通知
+    await waitFor(() => {
+        const badgeElement = screen.getByTestId("notification-badge"); // 使用 data-testid
+        expect(badgeElement).toHaveTextContent("2"); // 預設有 2 個未讀通知
+    });
   });
 
   // 測試案例 2: 驗證通知列表的渲染
