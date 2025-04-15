@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "jsx": "react-jsx", // 確保 Jest 能正確解析 JSX
+      "module": "commonjs", // Jest 預設使用 CommonJS 模組
+      "esModuleInterop": true, // 支援 ES 模組
+      "allowSyntheticDefaultImports": true // 支援默認匯入
+    },
+    "include": ["jest.setup.ts", "**/*.test.ts", "**/*.test.tsx"]
+}
