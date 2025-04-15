@@ -16,8 +16,19 @@ import { AlertCircle, CheckCircle2, Clock, MoreHorizontal } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 
+interface Alert {
+  id: string
+  severity: "High" | "Medium" | "Low"
+  message: string
+  source: string
+  timestamp: string
+  status: "Active" | "Acknowledged" | "Resolved"
+  resolvedAt?: string
+  acknowledgedAt?: string
+}
+
 // Sample data for system alerts
-const alerts = [
+const alerts: Alert[] = [
   {
     id: "ALERT-001",
     severity: "High",
@@ -64,29 +75,31 @@ const alerts = [
 ]
 
 export function AlertsTable() {
-  const [selectedAlert, setSelectedAlert] = useState<any | null>(null)
+  const [selectedAlert, setSelectedAlert] = useState<Alert | null>(null)
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
   const [isResolveDialogOpen, setIsResolveDialogOpen] = useState(false)
 
-  const handleView = (alert: any) => {
+  const handleView = (alert: Alert) => {
     setSelectedAlert(alert)
     setIsViewDialogOpen(true)
   }
 
-  const handleResolve = (alert: any) => {
+  const handleResolve = (alert: Alert) => {
     setSelectedAlert(alert)
     setIsResolveDialogOpen(true)
   }
 
   const confirmResolve = () => {
-    // In a real application, you would call your API to resolve the alert
-    toast("Alert resolved", {
-      description: `Alert ${selectedAlert.id} has been marked as resolved.`,
-    })
+    if (selectedAlert) {
+      // In a real application, you would call your API to resolve the alert
+      toast("Alert resolved", {
+        description: `Alert ${selectedAlert.id} has been marked as resolved.`,
+      })
+    }
     setIsResolveDialogOpen(false)
   }
 
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status: Alert["status"]) => {
     switch (status) {
       case "Active":
         return <AlertCircle className="h-4 w-4 text-destructive" />
@@ -99,7 +112,7 @@ export function AlertsTable() {
     }
   }
 
-  const getSeverityBadge = (severity: string) => {
+  const getSeverityBadge = (severity: Alert["severity"]) => {
     switch (severity) {
       case "High":
         return <Badge variant="destructive">{severity}</Badge>

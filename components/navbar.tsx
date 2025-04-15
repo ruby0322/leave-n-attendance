@@ -15,38 +15,61 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Bell, Clock, FileText, LogOut, Settings, User } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+// 定義 Notification 介面
+interface Notification {
+  id: string
+  title: string
+  description: string
+  time: string
+  read: boolean
+  type: "leave" | "team" | "document" | string
+}
+
+const fakeData: Notification[] = [
+  {
+    id: "1",
+    title: "Leave Request Approved",
+    description: "Your leave request for Oct 15-18 has been approved by Jane Smith.",
+    time: "10 minutes ago",
+    read: false,
+    type: "leave",
+  },
+  {
+    id: "2",
+    title: "New Team Member",
+    description: "Welcome Emily Davis to the team! She will be joining as a Frontend Developer.",
+    time: "2 hours ago",
+    read: false,
+    type: "team",
+  },
+  {
+    id: "3",
+    title: "Leave Request Pending",
+    description: "Your leave request for Dec 24-31 is pending approval from Jane Smith.",
+    time: "1 day ago",
+    read: true,
+    type: "leave",
+  },
+]
 
 export function Navbar() {
   const router = useRouter()
 
-  // 模擬通知數據
-  const [notifications, setNotifications] = useState([
-    {
-      id: "1",
-      title: "Leave Request Approved",
-      description: "Your leave request for Oct 15-18 has been approved by Jane Smith.",
-      time: "10 minutes ago",
-      read: false,
-      type: "leave",
-    },
-    {
-      id: "2",
-      title: "New Team Member",
-      description: "Welcome Emily Davis to the team! She will be joining as a Frontend Developer.",
-      time: "2 hours ago",
-      read: false,
-      type: "team",
-    },
-    {
-      id: "3",
-      title: "Leave Request Pending",
-      description: "Your leave request for Dec 24-31 is pending approval from Jane Smith.",
-      time: "1 day ago",
-      read: true,
-      type: "leave",
-    },
-  ])
+  // 使用 Notification 介面作為 useState 的類型
+  const [notifications, setNotifications] = useState<Notification[]>([])
+
+  useEffect(() => {
+    // 模擬從伺服器獲取數據
+    const fetchNotifications = async () => {
+      // 模擬延遲
+      await new Promise((resolve) => setTimeout(resolve, 500))
+      setNotifications(fakeData)
+    }
+
+    fetchNotifications()
+  }, [])
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
