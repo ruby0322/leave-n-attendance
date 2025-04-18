@@ -261,7 +261,7 @@ export default function ReportsPage() {
               </CardHeader>
               <CardContent>
                 <div className="h-40">
-                  <LeaveTypeDistributionChart data={leaveUsageData.by_leave_type} />
+                  <LeaveTypeDistributionChart />
                 </div>
               </CardContent>
             </Card>
@@ -291,7 +291,7 @@ export default function ReportsPage() {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <LeaveUsageChart data={leaveUsageData.by_month} />
+                  <LeaveUsageChart />
                 </div>
               </CardContent>
             </Card>
